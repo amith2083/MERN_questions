@@ -3,11 +3,21 @@ const app = express()
 
 const port =7002
 
-const logger = (req,res,next)=>{
-    console.log(` ${req.url} is ${req.method}`)
-    next()
+// const logger = (req,res,next)=>{
+//     console.log(` ${req.url} is ${req.method}`)
+//     next()
+// }
+// app.use(logger)
+
+//middleware to block get request
+const block = (req,res,next)=>{
+    if(req.method==='GET'){
+        return res.send('get request was blocked')
+    }else{
+        next();
+    }
 }
-app.use(logger)
+app.use(block)
 
 //add 2 numbers using req.query---------------------------------------------
 app.get('/',(req,res)=>{
