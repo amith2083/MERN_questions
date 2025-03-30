@@ -19,6 +19,22 @@ const block = (req,res,next)=>{
 }
 app.use(block)
 
+// 🛑 Middleware to block requests containing specific headers
+const blockHeadersMiddleware = (req, res, next) => {
+    const blockedHeaders = ["x-blocked-header", "x-secret-key"]; // Define restricted headers
+
+    for (const header of blockedHeaders) {
+        if (req.headers[header.toLowerCase()]) { // Convert to lowercase for case-insensitivity
+            return res.status(403).send(`Request blocked due to restricted header: ${header}`);
+        }
+    }
+    
+    next(); // Allow request if no blocked headers are found
+};
+
+// 🌐 Use the middleware
+app.use(blockHeadersMiddleware);
+
 //add 2 numbers using req.query---------------------------------------------
 app.get('/',(req,res)=>{
     const{num1,num2}= req.query;
