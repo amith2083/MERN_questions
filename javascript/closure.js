@@ -11,3 +11,4 @@ return function counter1(){
 const result = counter()
 result();
 result();
+

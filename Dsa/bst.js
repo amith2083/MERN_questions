@@ -184,3 +184,28 @@ return count;
 
 }
 console.log('node count is ',countNodes(root))
+
+
+
+function findHeightIterative(root) {
+    if (!root) return -1; // Base case: Empty tree has height -1
+
+    let height = -1;
+    const queue = [root];
+
+    while (queue.length > 0) {
+        let levelSize = queue.length; // Number of nodes at the current level
+
+        for (let i = 0; i < levelSize; i++) {
+            let node = queue.shift();
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+
+        height++; // Increase height after each level
+    }
+
+    return height;
+}
+
+console.log("Height of the tree (Iterative):", findHeightIterative(root));

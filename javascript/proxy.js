@@ -1,4 +1,4 @@
-const target = { name: "Alice", age: 25 };
+const details = { name: "Alice", age: 25 };
 
 const handler = {
   get: (obj, prop) => {
@@ -7,7 +7,7 @@ const handler = {
   },
 };
 
-const proxy = new Proxy(target, handler);
+const proxy = new Proxy(details, handler);
 
 console.log(proxy.name); // Logs: Property 'name' was accessed → Output: Alice
 console.log(proxy.age);  // Logs: Property 'age' was accessed → Output: 25

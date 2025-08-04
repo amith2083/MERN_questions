@@ -20,3 +20,4 @@ person=null;
 console.log(person) //null
 
 console.log(members)//[ { name: 'john' } ]
+//In JavaScript, objects are stored by reference. Reassigning a variable that held a reference doesn’t delete the object if something else still references it.

@@ -1,17 +1,18 @@
 // Define the memoize function first
 function memoize(fn) {
-    const cache = new Map();
-    return function (...args) {
-        const key = JSON.stringify(args);
-        if (cache.has(key)) {
-            console.log("Fetching from cache:", key);
-            return cache.get(key);
-        }
-        console.log("Computing result:", key);
-        const result = fn(...args);
-        cache.set(key, result);
-        return result;
-    };
+  let cache = {};
+  return function (a, b) {
+    const key = `${a},${b}`; // or JSON.stringify([a, b])
+    if (cache[key]) {
+      console.log("cached result");
+      return cache[key];
+    } else {
+      console.log("initial");
+      const result = fn(a, b);
+      cache[key] = result;
+      return result;
+    }
+  };
 }
 
 
