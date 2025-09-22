@@ -4,3 +4,5 @@ function anagram (str1,str2){
     return sortedStr1 === sortedStr2
 }
 console.log(anagram(str1,str2))
+
+
